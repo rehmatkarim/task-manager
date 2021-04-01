@@ -10,7 +10,7 @@ MongoClient.connect(
     if (error) {
       return console.log("unable to connect to the database..");
     }
-    console.log('connected successfully');
+    console.log("connected successfully");
     const db = client.db(database);
     // db.collection('users').insertMany([
     //   {
@@ -58,32 +58,62 @@ MongoClient.connect(
     //   }
     //   console.log(results.ops);
     // });
-    db.collection('users').findOne({name:'amjad'},(error,user)=>{
-        if (error){
-            return console.log('unable to fecth the user');
-        }
-        console.log(user);
-    })
+    // db.collection('users').findOne({name:'amjad'},(error,user)=>{
+    //     if (error){
+    //         return console.log('unable to fecth the user');
+    //     }
+    //     console.log(user);
+    // })
 
-    db.collection('users').find({age:27}).toArray((error,users)=>{
-        if (error){
-            return console.log('unable to fetch the users');
-        }
-        console.log(users);
-    })
+    // db.collection('users').find({age:27}).toArray((error,users)=>{
+    //     if (error){
+    //         return console.log('unable to fetch the users');
+    //     }
+    //     console.log(users);
+    // })
 
-    db.collection('tasks').findOne({_id:new ObjectID("6065fe7885002908acaf3d82")},(error,task)=>{
-        if (error){
-            return console.log('unable to fetch the task');
-        }
-        console.log(task);
-    })
+    // db.collection('tasks').findOne({_id:new ObjectID("6065fe7885002908acaf3d82")},(error,task)=>{
+    //     if (error){
+    //         return console.log('unable to fetch the task');
+    //     }
+    //     console.log(task);
+    // })
 
-    db.collection('tasks').find({completed:false}).toArray((error,tasks)=>{
-        if (error){
-            return console.log('unable to fetch the tasks');
+    // db.collection('tasks').find({completed:false}).toArray((error,tasks)=>{
+    //     if (error){
+    //         return console.log('unable to fetch the tasks');
+    //     }
+    //     console.log(tasks);
+    // })
+
+    // db.collection('users').updateOne({
+    //   _id:new ObjectID('6065fe7885002908acaf3d7d')
+    // },{
+    //   $inc:{
+    //     age:2
+    //   }
+    // }).then((result)=>{
+    //   console.log(result);
+    // }).catch((error)=>{
+    //   console.log(error);
+    // })
+
+    db.collection("tasks")
+      .updateMany(
+        {
+          completed: false,
+        },
+        {
+          $set: {
+            completed: true,
+          },
         }
-        console.log(tasks);
-    })
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 );
