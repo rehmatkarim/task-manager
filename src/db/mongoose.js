@@ -50,6 +50,7 @@ const Task = mongoose.model("Task", {
   discription: {
     type: String,
     required: true,
+    trim:true
   },
   completed: {
     type: Boolean,
