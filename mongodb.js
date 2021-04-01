@@ -10,22 +10,69 @@ MongoClient.connect(
     if (error) {
       return console.log("unable to connect to the database..");
     }
+    console.log('connected successfully');
     const db = client.db(database);
-    // db.collection('users').findOne({name:'amjad'},(error,user)=>{
-    //     if (error){
-    //         return console.log('unable to fecth the user');
-    //     }
-    //     console.log(user);
-    // })
+    // db.collection('users').insertMany([
+    //   {
+    //     name:'Rehmat',
+    //     age:26
+    //   },
+    //   {
+    //     name:'Huzaifa',
+    //     age:27
+    //   },
+    //   {
+    //     name:'sohrab',
+    //     age:22
+    //   },
+    //   {
+    //     name:'Amjad',
+    //     age:27
+    //   }
+    // ],(error,results)=>{
+    //   if (error){
+    //     return console.log('Unable to insert the documents..');
+    //   }
+    //   console.log(results.ops);
+    // });
+    // db.collection('tasks').insertMany([
+    //   {
+    //     description:'clean the room',
+    //     completed:false
+    //   },
+    //   {
+    //     description:'make node notes',
+    //     completed:true
+    //   },
+    //   {
+    //     description:'play pubg',
+    //     completed:true
+    //   },
+    //   {
+    //     description:'call home',
+    //     completed:false
+    //   }
+    // ],(error,results)=>{
+    //   if (error){
+    //     return console.log('Unable to insert the documents..');
+    //   }
+    //   console.log(results.ops);
+    // });
+    db.collection('users').findOne({name:'amjad'},(error,user)=>{
+        if (error){
+            return console.log('unable to fecth the user');
+        }
+        console.log(user);
+    })
 
-    // db.collection('users').find({age:27}).toArray((error,users)=>{
-    //     if (error){
-    //         return console.log('unable to fetch the users');
-    //     }
-    //     console.log(users);
-    // })
+    db.collection('users').find({age:27}).toArray((error,users)=>{
+        if (error){
+            return console.log('unable to fetch the users');
+        }
+        console.log(users);
+    })
 
-    db.collection('tasks').findOne({_id:new ObjectID("6065e37d88c0de41df2f8e3c")},(error,task)=>{
+    db.collection('tasks').findOne({_id:new ObjectID("6065fe7885002908acaf3d82")},(error,task)=>{
         if (error){
             return console.log('unable to fetch the task');
         }
